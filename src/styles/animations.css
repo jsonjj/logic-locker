@@ -1,0 +1,232 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 147, 22, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(211, 147, 22, 0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pop-in {
+  animation: popIn 0.4s ease;
+}
+
+/* ---------- ROUND FAILED (non-violent game-show elimination) ---------- */
+
+.round-failed-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: rgba(18, 18, 20, 0.95);
+  overflow: hidden;
+}
+
+/* red flash layer (solid color, no gradient) */
+.round-failed-spotlight {
+  position: absolute;
+  inset: 0;
+  background: var(--danger);
+  opacity: 0;
+  animation: redFlash 1.6s ease forwards;
+}
+
+@keyframes redFlash {
+  0% {
+    opacity: 0.55;
+  }
+  15% {
+    opacity: 0.15;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  45% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* two door panels slamming shut */
+.slam-doors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.slam-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #14141a;
+}
+
+.slam-door.left {
+  left: -50%;
+  border-right: 3px solid var(--danger);
+  animation: slamLeft 0.9s cubic-bezier(0.6, 0, 0.2, 1) 0.3s forwards;
+}
+
+.slam-door.right {
+  right: -50%;
+  border-left: 3px solid var(--danger);
+  animation: slamRight 0.9s cubic-bezier(0.6, 0, 0.2, 1) 0.3s forwards;
+}
+
+@keyframes slamLeft {
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slamRight {
+  to {
+    right: 0;
+  }
+}
+
+.round-failed-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 24px;
+  animation: rise 0.5s ease 0.9s both;
+}
+
+.round-failed-title {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ff5b54;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 480px) {
+  .round-failed-title {
+    font-size: 2rem;
+  }
+}
+
+/* ---------- Completion / escape animation ---------- */
+
+.completion-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--success-soft);
+  overflow: hidden;
+}
+
+.escape-doors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.escape-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: var(--surface-2);
+}
+
+.escape-door.left {
+  left: 0;
+  border-right: 3px solid var(--primary);
+  animation: openLeft 1.2s cubic-bezier(0.2, 0, 0.1, 1) 0.2s forwards;
+}
+
+.escape-door.right {
+  right: 0;
+  border-left: 3px solid var(--primary);
+  animation: openRight 1.2s cubic-bezier(0.2, 0, 0.1, 1) 0.2s forwards;
+}
+
+@keyframes openLeft {
+  to {
+    left: -55%;
+  }
+}
+
+@keyframes openRight {
+  to {
+    right: -55%;
+  }
+}
+
+.completion-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 24px;
+  animation: rise 0.6s ease 0.8s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
