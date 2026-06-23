@@ -1,5 +1,6 @@
 import type { Step } from '../types'
 import AkashDialog from './AkashDialog'
+import ConceptCard from './ConceptCard'
 import ChoiceStepView from './steps/ChoiceStepView'
 import ClueSortView from './steps/ClueSortView'
 import DeductionGridView from './steps/DeductionGridView'
@@ -19,6 +20,9 @@ export default function StepRenderer({
   switch (step.type) {
     case 'dialogue':
       return <AkashDialog speaker={step.speaker} text={step.text} />
+
+    case 'concept':
+      return <ConceptCard step={step} />
 
     case 'caseSummary':
       return (

@@ -34,6 +34,30 @@ export default function OrderingView({
     setEvaluated(false)
   }
 
+  const wrongCount = order.filter((item, i) => item.id !== step.correctAnswer[i]).length
+
+  // Keep the steps already in the right spot, and shuffle only the wrong ones
+  // back to their starting order so the student can redo just those.
+  function resetWrong() {
+    if (locked) return
+    setOrder((prev) => {
+      const start = initialOrder(step)
+      const wrongSlots = prev
+        .map((item, i) => (item.id === step.correctAnswer[i] ? -1 : i))
+        .filter((i) => i >= 0)
+      const wrongItems = wrongSlots.map((i) => prev[i])
+      wrongItems.sort(
+        (a, b) => start.findIndex((s) => s.id === a.id) - start.findIndex((s) => s.id === b.id),
+      )
+      const next = [...prev]
+      wrongSlots.forEach((slot, k) => {
+        next[slot] = wrongItems[k]
+      })
+      return next
+    })
+    setEvaluated(false)
+  }
+
   function itemClass(index: number): string {
     const classes = ['order-item']
     if (locked) classes.push('right')
@@ -94,9 +118,16 @@ export default function OrderingView({
         ))}
       </div>
       {!locked && (
-        <button type="button" className="btn btn-primary btn-block" onClick={check}>
-          Check Order
-        </button>
+        <div className="stack" style={{ marginTop: 14 }}>
+          {evaluated && wrongCount > 0 && (
+            <button type="button" className="btn btn-block" onClick={resetWrong}>
+              Reset wrong steps ({wrongCount})
+            </button>
+          )}
+          <button type="button" className="btn btn-primary btn-block" onClick={check}>
+            Check Order
+          </button>
+        </div>
       )}
     </div>
   )

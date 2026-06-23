@@ -11,6 +11,7 @@ export type StepPhase =
 
 export type StepType =
   | 'dialogue'
+  | 'concept'
   | 'multipleChoice'
   | 'clueSort'
   | 'deductionGrid'
@@ -105,6 +106,23 @@ export interface CaseSummaryStep extends BaseStep {
   correctAnswer: null
 }
 
+/** A single concept taught in a room briefing. */
+export interface ConceptPoint {
+  term: string
+  detail: string
+  example?: string
+}
+
+/** A short, read-only teaching screen shown before the questions in a room. */
+export interface ConceptStep extends BaseStep {
+  type: 'concept'
+  title: string
+  intro?: string
+  points: ConceptPoint[]
+  akashLine?: string
+  correctAnswer: null
+}
+
 export interface ChoiceStep extends BaseStep {
   type: 'multipleChoice' | 'prediction' | 'highlightChoice' | 'symbolTap'
   choices: Choice[]
@@ -185,6 +203,7 @@ export interface OrderingStep extends BaseStep {
 export type Step =
   | DialogueStep
   | CaseSummaryStep
+  | ConceptStep
   | ChoiceStep
   | ClueSortStep
   | DeductionGridStep

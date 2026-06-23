@@ -343,6 +343,60 @@ code {
   margin: 2px 0 0;
 }
 
+/* ---------- Concept briefing ---------- */
+
+.concept-eyebrow {
+  font-weight: 800;
+  color: var(--accent);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.concept-title {
+  margin: 4px 0 0;
+}
+
+.concept-intro {
+  margin: 8px 0 0;
+  color: var(--text-dim);
+}
+
+.concept-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.concept-point {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+.concept-term {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.concept-detail {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.concept-example {
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
 /* ---------- Feedback panel ---------- */
 
 .feedback {
@@ -505,6 +559,11 @@ code {
   opacity: 0.45;
 }
 
+.clue-card.dragging,
+.category-chip[draggable='true']:active {
+  opacity: 0.5;
+}
+
 .clue-card.right {
   border-color: var(--primary);
 }
@@ -530,6 +589,12 @@ code {
 .category.targetable {
   border-color: var(--accent);
   cursor: pointer;
+}
+
+.category.dragover {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .category-title {
@@ -1620,6 +1685,40 @@ code {
   color: #8a6100;
   background: #fbf1dc;
   border-color: rgba(211, 147, 22, 0.4);
+}
+
+.review-advice {
+  margin-top: 10px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--warn);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.review-advice-title {
+  font-weight: 800;
+  color: var(--warn);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.review-advice-msg {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.review-advice-steps {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.review-advice-steps li {
+  margin-bottom: 4px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
 }
 
 .review-term {

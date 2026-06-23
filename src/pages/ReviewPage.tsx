@@ -127,12 +127,27 @@ export default function ReviewPage() {
               : struggled
                 ? `Took ${a!.attempts} tries`
                 : 'Not recorded'
+            const advice = step.feedback?.secondWrong
+            const reasoning = step.guidedReasoning ?? []
             return (
               <div key={step.id} className={`review-q ${statusClass}`}>
                 <div className="review-q-num">{i + 1}</div>
                 <div className="review-q-body">
                   <p className="review-q-prompt">{step.prompt}</p>
                   <span className={`review-q-chip ${statusClass}`}>{statusText}</span>
+                  {struggled && (advice || reasoning.length > 0) && (
+                    <div className="review-advice">
+                      <div className="review-advice-title">Why this one tripped you up</div>
+                      {advice && <p className="review-advice-msg">{advice}</p>}
+                      {reasoning.length > 0 && (
+                        <ol className="review-advice-steps">
+                          {reasoning.map((line, idx) => (
+                            <li key={idx}>{line}</li>
+                          ))}
+                        </ol>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             )

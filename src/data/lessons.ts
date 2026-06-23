@@ -27,6 +27,38 @@ const lesson1: Lesson = {
       correctAnswer: null,
     },
     {
+      id: 'l1-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'Four Kinds of Clues',
+      intro: 'Every case is built from clues. Before you solve anything, you need to know what each clue is really telling you. There are four kinds:',
+      points: [
+        {
+          term: 'Fact',
+          detail: 'Something a clue states directly. You can trust it without guessing.',
+          example: 'Example: the clue says the pass was on the front desk — that is a fact.',
+        },
+        {
+          term: 'Possibility',
+          detail: 'Something that could be true, but no clue has proven yet.',
+          example: 'Example: "it could still be there" is only a possibility.',
+        },
+        {
+          term: 'Contradiction',
+          detail: 'When two things cannot both be true. It tells you a guess is wrong.',
+          example: 'Example: if the pass was on the desk, "it was never there" is a contradiction.',
+        },
+        {
+          term: 'Unknown',
+          detail: "Something you don't have enough information about yet. Leave it open.",
+          example: 'Example: if no clue mentions it, it stays unknown.',
+        },
+      ],
+      akashLine: 'Learn these four and you stop guessing. Ignore them and you stay a rookie.',
+      correctAnswer: null,
+    },
+    {
       id: 'l1-step-2',
       type: 'multipleChoice',
       phase: 'micro-practice',
@@ -186,6 +218,34 @@ const lesson2: Lesson = {
       speaker: 'Akash',
       prompt: '',
       text: 'Welcome to the grid room. This is where guesses go to be crushed. Case: The Locker Color Mix-Up. A deduction grid tracks what is possible — checkmark means confirmed, X means impossible, blank means unknown.',
+      correctAnswer: null,
+    },
+    {
+      id: 'l2-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'Reading a Deduction Grid',
+      intro: 'A deduction grid is a detective\u2019s map of what is possible. Every box gets exactly one of three marks:',
+      points: [
+        {
+          term: '\u2713 Check',
+          detail: 'A confirmed match. This one is true.',
+        },
+        {
+          term: '\u2715 X',
+          detail: 'Impossible. A clue has ruled this out.',
+        },
+        {
+          term: 'Blank',
+          detail: 'Unknown. You do not know yet, so leave it empty.',
+        },
+        {
+          term: 'The big rule',
+          detail: 'Each person gets exactly one answer, and each answer belongs to exactly one person.',
+        },
+      ],
+      akashLine: 'Three marks. That is the whole language of the grid. Try to keep up.',
       correctAnswer: null,
     },
     {
@@ -388,6 +448,30 @@ const lesson3: Lesson = {
       correctAnswer: null,
     },
     {
+      id: 'l3-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'One Check, Many X\u2019s',
+      intro: 'A checkmark is never alone. The moment you confirm one answer, other boxes are forced to change. This is the most important habit in grid solving:',
+      points: [
+        {
+          term: 'Clear the row and column',
+          detail: 'When a box gets a \u2713, the rest of that row and that column become \u2715.',
+        },
+        {
+          term: 'Why it works',
+          detail: 'Each answer belongs to only one person. Once it is taken, nobody else can have it.',
+        },
+        {
+          term: 'Work in order',
+          detail: 'Mark the \u2713 first, then cross out everything it just made impossible.',
+        },
+      ],
+      akashLine: 'Follow the chain every time. One check, then the X\u2019s it forces. Miss that and the grid lies to you.',
+      correctAnswer: null,
+    },
+    {
       id: 'l3-step-2',
       type: 'prediction',
       phase: 'micro-practice',
@@ -579,6 +663,31 @@ const lesson4: Lesson = {
       correctAnswer: null,
     },
     {
+      id: 'l4-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'Testing a Guess',
+      intro: 'When no clue gives you the answer directly, you can test a guess. If the guess breaks a clue, you know it is wrong. Here is the toolkit:',
+      points: [
+        {
+          term: 'If-then clue',
+          detail: 'A rule like "If it is in the Gym, then the coach saw it." It forces what must be true.',
+        },
+        {
+          term: 'Contradiction',
+          detail: 'When your guess leads to something a clue says is false.',
+          example: 'Example: the guess says the coach saw it, but a clue says he did not.',
+        },
+        {
+          term: 'Eliminate',
+          detail: 'A guess that causes a contradiction is impossible. Cross it off and move on.',
+        },
+      ],
+      akashLine: 'A contradiction is not a problem. It is a gift. It tells you exactly what to throw away.',
+      correctAnswer: null,
+    },
+    {
       id: 'l4-step-2',
       type: 'prediction',
       phase: 'micro-practice',
@@ -748,6 +857,36 @@ const lesson5: Lesson = {
       speaker: 'Akash',
       prompt: '',
       text: 'Welcome to the switch room. Finally, a room where the lights are smarter than some recruits. Case: The Three Security Doors. AND means both. OR means at least one. NOT flips true and false.',
+      correctAnswer: null,
+    },
+    {
+      id: 'l5-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'AND, OR, NOT',
+      intro: 'Some doors open only with the right combination of switches. Three small words decide everything:',
+      points: [
+        {
+          term: 'AND',
+          detail: 'True only when BOTH parts are true.',
+          example: 'Example: keycard AND code — you need both on.',
+        },
+        {
+          term: 'OR',
+          detail: 'True when AT LEAST ONE part is true.',
+          example: 'Example: badge OR pass — either one works.',
+        },
+        {
+          term: 'NOT',
+          detail: 'Flips it. "NOT active" is true only when the switch is OFF.',
+        },
+        {
+          term: 'Parentheses first',
+          detail: 'Solve the part inside ( ) before the rest, just like in math.',
+        },
+      ],
+      akashLine: 'AND is greedy, OR is easygoing, NOT is a contrarian. Remember that before you flip anything.',
       correctAnswer: null,
     },
     {
@@ -954,6 +1093,34 @@ const lesson6: Lesson = {
       correctAnswer: null,
     },
     {
+      id: 'l6-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'Building an Explanation',
+      intro: 'A right answer is not enough — you have to show how you got there. Strong reasoning is built in order:',
+      points: [
+        {
+          term: '1. Start with the rule',
+          detail: 'The if-then statement or the clue you are leaning on.',
+        },
+        {
+          term: '2. Add the evidence',
+          detail: 'The fact that triggers the rule.',
+        },
+        {
+          term: '3. Then conclude',
+          detail: 'The answer follows from the rule plus the evidence.',
+        },
+        {
+          term: 'Order matters',
+          detail: 'Go clue \u2192 elimination \u2192 conclusion. Never start with the conclusion.',
+        },
+      ],
+      akashLine: 'Anyone can shout an answer. A detective can explain it, in order, without flinching.',
+      correctAnswer: null,
+    },
+    {
       id: 'l6-step-2',
       type: 'ordering',
       phase: 'micro-practice',
@@ -1118,6 +1285,34 @@ const lesson7: Lesson = {
       correctAnswer: null,
     },
     {
+      id: 'l7-concept',
+      type: 'concept',
+      phase: 'intro',
+      prompt: '',
+      title: 'Your Detective Toolkit',
+      intro: 'This is the final case, so you will need every skill from the academy. Here is your toolkit before you walk in:',
+      points: [
+        {
+          term: 'Sort the clues',
+          detail: 'Separate facts, eliminations, and if-then rules before you start.',
+        },
+        {
+          term: 'Use the grid',
+          detail: 'One \u2713 forces many \u2715\u2019s across its row and column.',
+        },
+        {
+          term: 'Catch contradictions',
+          detail: 'Throw out any guess that breaks a clue.',
+        },
+        {
+          term: 'Order your reasoning',
+          detail: 'Build the case step by step: clue \u2192 elimination \u2192 conclusion.',
+        },
+      ],
+      akashLine: 'Everything you learned, in one room. No pressure. Well — some pressure.',
+      correctAnswer: null,
+    },
+    {
       id: 'l7-step-2',
       type: 'caseSummary',
       phase: 'intro',
@@ -1199,7 +1394,7 @@ const lesson7: Lesson = {
       type: 'miniGrid',
       phase: 'guided-practice',
       prompt:
-        "Item grid warmup. Tess opened Green. The Flashlight was not used on Green, and the Keycard opened Blue. Mark Tess's item row.",
+        "Item grid warmup. Three recruits — Nora, Malik, and Tess — each found one item: a Keycard, a Map, or a Flashlight. Tess opened the Green Door. The Flashlight was not used on the Green Door, and the Keycard opened the Blue Door. Mark Tess's item row.",
       rows: ['Nora', 'Malik', 'Tess'],
       cols: ['Keycard', 'Map', 'Flashlight'],
       clues: [
@@ -1226,7 +1421,7 @@ const lesson7: Lesson = {
       id: 'l7-step-6',
       type: 'deductionGrid',
       phase: 'challenge',
-      prompt: 'Complete the full item grid. Who found the Keycard, Map, and Flashlight?',
+      prompt: 'Complete the full item grid. Three recruits — Nora, Malik, and Tess — each found one item: a Keycard, a Map, or a Flashlight. Use the clues to find who found each.',
       rows: ['Nora', 'Malik', 'Tess'],
       cols: ['Keycard', 'Map', 'Flashlight'],
       clues: [
@@ -1248,7 +1443,7 @@ const lesson7: Lesson = {
           'Tess has the Map. Malik did not have the Flashlight and cannot have the Map, so Malik has the Keycard. That leaves the Flashlight for Nora.',
       },
       guidedReasoning: [
-        'Tess has the Map (from the warmup).',
+        'Tess opened Green, the Flashlight was not used on Green, and the Keycard opened Blue, so Tess has the Map.',
         'Malik did not have the Flashlight, and the Map is taken, so Malik has the Keycard.',
         'That leaves the Flashlight for Nora.',
       ],
@@ -1257,7 +1452,7 @@ const lesson7: Lesson = {
       id: 'l7-step-7',
       type: 'miniGrid',
       phase: 'guided-practice',
-      prompt: "Door grid warmup. Malik had the Keycard, and the Keycard opened the Blue Door. Mark Malik's door row.",
+      prompt: "Door grid warmup. The same three recruits — Nora, Malik, and Tess — each opened one door: the Red Door, the Blue Door, or the Green Door. Malik had the Keycard, and the Keycard opened the Blue Door. Mark Malik's door row.",
       rows: ['Nora', 'Malik', 'Tess'],
       cols: ['Red Door', 'Blue Door', 'Green Door'],
       clues: ['The recruit with the Keycard opened the Blue Door.', 'Malik had the Keycard.'],
@@ -1279,7 +1474,7 @@ const lesson7: Lesson = {
       id: 'l7-step-8',
       type: 'deductionGrid',
       phase: 'challenge',
-      prompt: 'Complete the full door grid. Who opened the Red, Blue, and Green Doors?',
+      prompt: 'Complete the full door grid. Nora, Malik, and Tess each opened one door: the Red Door, the Blue Door, or the Green Door. Use the clues to find who opened each.',
       rows: ['Nora', 'Malik', 'Tess'],
       cols: ['Red Door', 'Blue Door', 'Green Door'],
       clues: [
