@@ -26,8 +26,14 @@ export default function CompletionScreen({
       <h2 style={{ marginBottom: 4 }}>{isFinal ? 'You Escaped the Logic Locker!' : 'Room Complete!'}</h2>
       <p className="muted" style={{ marginTop: 0 }}>{lessonTitle}</p>
 
-      <div style={{ margin: '18px 0' }}>
-        <Badge type={badge} large />
+      <div className="badge-celebrate" style={{ margin: '18px 0' }}>
+        <span className="spark spark-1" aria-hidden />
+        <span className="spark spark-2" aria-hidden />
+        <span className="spark spark-3" aria-hidden />
+        <span className="spark spark-4" aria-hidden />
+        <div className="badge-pop">
+          <Badge type={badge} large />
+        </div>
       </div>
 
       <div className="stat-grid" style={{ marginBottom: 18 }}>

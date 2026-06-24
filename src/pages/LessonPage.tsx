@@ -16,9 +16,12 @@ import {
   completeLesson,
   awardBadge,
   setCurrentPosition,
-  setLessonBadge,
+  setVariantTrack,
+  beginReplayRun,
+  finishReplay,
 } from '../firebase/progress'
 import { resumeIndex, nextStepId, isLastStep, addCompletedStep } from '../logic/progressHelpers'
+import { resolveStep, pickTrack } from '../logic/variants'
 import {
   determineEarnedBadge,
   shouldTriggerRoundFailed,
@@ -55,6 +58,7 @@ export default function LessonPage() {
   const [completion, setCompletion] = useState<{ badge: BadgeType } | null>(null)
   const [priorBadge, setPriorBadge] = useState<BadgeType | null>(null)
   const [saveError, setSaveError] = useState(false)
+  const [track, setTrack] = useState(0)
 
   const uid = user?.uid
 
@@ -74,19 +78,37 @@ export default function LessonPage() {
       if (!uid || !lesson) return
       try {
         const existing = await getLessonProgress(uid, lesson.id)
-        const replaying = existing?.status === 'completed'
+        const everCompleted = profile?.completedLessonIds.includes(lesson.id) ?? false
         setPriorBadge(existing?.earnedBadge ?? null)
-        if (!replaying) {
+        if (everCompleted) {
+          // Fresh replay run: re-roll the case track and clear the previous
+          // run's answers so the review only shows the most recent attempt.
+          const nextTrack = pickTrack(lesson, existing?.variantTrack)
+          await beginReplayRun(uid, lesson.id, nextTrack)
+          if (!active) return
+          setTrack(nextTrack)
+          setMistakes(0)
+          setFailedRound(false)
+          setCompletedStepIds([])
+          setIndex(0)
+          setIsReplay(true)
+        } else {
           const prog = existing ?? (await startLesson(uid, lesson.id))
           if (!active) return
+          let runTrack = prog.variantTrack
+          if (runTrack === undefined || runTrack === null) {
+            runTrack = pickTrack(lesson)
+            await setVariantTrack(uid, lesson.id, runTrack)
+          }
+          setTrack(runTrack)
           setMistakes(prog.mistakes)
           setFailedRound(prog.failedRoundTriggered)
           setCompletedStepIds(prog.completedStepIds)
           const resume = resumeIndex(lesson, prog.currentStepId)
           setIndex(resume)
           await setCurrentPosition(uid, lesson.id, lesson.steps[resume]?.id ?? '')
+          setIsReplay(false)
         }
-        if (active) setIsReplay(replaying)
       } catch (err) {
         console.error('Failed to load progress', err)
       } finally {
@@ -97,9 +119,11 @@ export default function LessonPage() {
     return () => {
       active = false
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uid, lesson])
 
-  const currentStep = lesson?.steps[index]
+  const baseStep = lesson?.steps[index]
+  const currentStep = baseStep ? resolveStep(baseStep, track) : undefined
 
   // Non-interactive steps (dialogue / summary) are immediately continuable.
   useEffect(() => {
@@ -111,7 +135,10 @@ export default function LessonPage() {
   }, [index, lesson])
 
   const totalSteps = lesson?.steps.length ?? 0
-  const stepKey = useMemo(() => `${lessonId}-${currentStep?.id ?? ''}`, [lessonId, currentStep?.id])
+  const stepKey = useMemo(
+    () => `${lessonId}-${currentStep?.id ?? ''}-${track}`,
+    [lessonId, currentStep?.id, track],
+  )
 
   if (!lesson || !currentStep) return null
   if (!ready) {
@@ -123,7 +150,7 @@ export default function LessonPage() {
   }
 
   async function persist(data: Parameters<typeof saveStepResult>[3]) {
-    if (isReplay || !uid) return
+    if (!uid) return
     try {
       await saveStepResult(uid, lesson!.id, currentStep!.id, data)
       setSaveError(false)
@@ -190,20 +217,22 @@ export default function LessonPage() {
     if (!profile) return
     const runBadge = determineEarnedBadge(mistakes, failedRound)
 
-    // Replaying an already-completed room: only upgrade the badge if this run
-    // was better. Never duplicate badges, downgrade, or re-touch streak/unlocks.
+    // Replaying an already-completed room: keep this run's answers (for review),
+    // restore completed status, and only upgrade the badge if this run was better.
     if (isReplay) {
       const best = betterBadge(priorBadge, runBadge)
-      if (uid && best !== priorBadge) {
+      if (uid) {
         try {
-          await setLessonBadge(uid, lesson!.id, best)
-          await awardBadge(uid, {
-            badgeId: lesson!.badgeId,
-            lessonId: lesson!.id,
-            badgeType: best,
-            label: BADGE_META[best].label,
-            earnedAt: null,
-          })
+          await finishReplay(uid, lesson!.id, best)
+          if (best !== priorBadge) {
+            await awardBadge(uid, {
+              badgeId: lesson!.badgeId,
+              lessonId: lesson!.id,
+              badgeType: best,
+              label: BADGE_META[best].label,
+              earnedAt: null,
+            })
+          }
           setSaveError(false)
         } catch (err) {
           console.error('Failed to update badge', err)
@@ -303,7 +332,16 @@ export default function LessonPage() {
     }
   }
 
-  function handleReplay() {
+  async function handleReplay() {
+    if (uid && lesson) {
+      const nextTrack = pickTrack(lesson, track)
+      setTrack(nextTrack)
+      try {
+        await beginReplayRun(uid, lesson.id, nextTrack)
+      } catch (err) {
+        console.error('Failed to start replay', err)
+      }
+    }
     setCompletion(null)
     setIsReplay(true)
     setMistakes(0)
@@ -360,35 +398,37 @@ export default function LessonPage() {
           <ProgressBar current={index + 1} total={totalSteps} />
         </div>
 
-        {currentStep.prompt && (
+        <div key={stepKey} className="stack step-view">
+          {currentStep.prompt && (
+            <div className="card">
+              <p style={{ margin: 0, fontWeight: 600 }}>{currentStep.prompt}</p>
+              {currentStep.visual && (
+                <div style={{ marginTop: 14 }}>
+                  <StepVisual visual={currentStep.visual} />
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="card">
-            <p style={{ margin: 0, fontWeight: 600 }}>{currentStep.prompt}</p>
-            {currentStep.visual && (
-              <div style={{ marginTop: 14 }}>
-                <StepVisual visual={currentStep.visual} />
-              </div>
-            )}
+            <StepRenderer key={stepKey} step={currentStep} locked={answered} onResult={handleResult} />
           </div>
-        )}
 
-        <div className="card">
-          <StepRenderer key={stepKey} step={currentStep} locked={answered} onResult={handleResult} />
+          {feedback && (
+            <FeedbackPanel
+              status={feedback.status}
+              message={feedback.message}
+              guidedReasoning={currentStep.guidedReasoning}
+              showReasoning={feedback.showReasoning}
+            />
+          )}
+
+          {answered && (
+            <button type="button" className="btn btn-success btn-block continue-btn" onClick={handleContinue}>
+              {isLastStep(lesson, currentStep.id) ? 'Finish Room' : 'Continue'}
+            </button>
+          )}
         </div>
-
-        {feedback && (
-          <FeedbackPanel
-            status={feedback.status}
-            message={feedback.message}
-            guidedReasoning={currentStep.guidedReasoning}
-            showReasoning={feedback.showReasoning}
-          />
-        )}
-
-        {answered && (
-          <button type="button" className="btn btn-success btn-block" onClick={handleContinue}>
-            {isLastStep(lesson, currentStep.id) ? 'Finish Room' : 'Continue'}
-          </button>
-        )}
       </div>
     </div>
   )

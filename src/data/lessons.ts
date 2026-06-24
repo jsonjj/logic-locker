@@ -78,6 +78,26 @@ const lesson1: Lesson = {
         'The clue literally says Mina was in the classroom after lunch.',
         'You did not add anything, so it is a fact.',
       ],
+      variants: [
+        {
+          prompt: 'Statement: "Theo probably forgot his pass at home." Is this a fact or a guess?',
+          choices: [
+            { id: 'fact', label: 'A fact — it is directly stated' },
+            { id: 'guess', label: 'A guess — I am adding my own idea' },
+          ],
+          correctAnswer: 'guess',
+          feedback: {
+            correct: 'Right. "Probably" means you are adding your own idea — that is a guess.',
+            firstWrong: 'Did a clue actually state this, or are you assuming it?',
+            secondWrong: 'No clue says Theo forgot his pass. "Probably" makes it a guess, not a fact.',
+          },
+          guidedReasoning: [
+            'A fact is stated directly by a clue.',
+            'Nothing states that Theo forgot his pass.',
+            'The word "probably" means you are guessing.',
+          ],
+        },
+      ],
     },
     {
       id: 'l1-step-3',
@@ -99,6 +119,27 @@ const lesson1: Lesson = {
         'A possibility could be true but is not guaranteed.',
         'The statement says the pass "could still be there."',
         '"Could" means possible, not proven.',
+      ],
+      variants: [
+        {
+          prompt:
+            'Statement: "The pass might be in the gym, since Theo had practice there." Is this proven, or just possible?',
+          choices: [
+            { id: 'proven', label: 'Proven — it must be there' },
+            { id: 'possible', label: 'Possible — it could be there, but it is not proven' },
+          ],
+          correctAnswer: 'possible',
+          feedback: {
+            correct: 'Yes. "Might be" is a possibility, not proof.',
+            firstWrong: 'The words "might be" are a hint. That is not certainty.',
+            secondWrong: 'Proven means it must be true. "Might be" only says it is possible.',
+          },
+          guidedReasoning: [
+            'A possibility could be true but is not guaranteed.',
+            'The statement says the pass "might be" in the gym.',
+            '"Might" means possible, not proven.',
+          ],
+        },
       ],
     },
     {
@@ -125,6 +166,30 @@ const lesson1: Lesson = {
         'The clue says the pass was last seen on the front desk.',
         'This statement says it was never there — both cannot be true.',
         'That makes it a contradiction.',
+      ],
+      variants: [
+        {
+          prompt:
+            'Clue: the hall pass was last seen on the front desk. Statement: "A teacher moved the pass to the office." What is this?',
+          choices: [
+            { id: 'fact', label: 'A fact' },
+            { id: 'possibility', label: 'A possibility' },
+            { id: 'contradiction', label: 'A contradiction' },
+            { id: 'unknown', label: 'Not enough information' },
+          ],
+          correctAnswer: 'unknown',
+          feedback: {
+            correct: 'Correct. No clue proves this, so it is not enough information.',
+            firstWrong: 'Does any clue mention a teacher moving the pass?',
+            secondWrong:
+              'The clues never mention a teacher moving it. With no proof either way, it is "not enough information".',
+          },
+          guidedReasoning: [
+            'The clue only tells us where the pass was last seen.',
+            'No clue mentions a teacher moving it to the office.',
+            'With no proof either way, it is unknown.',
+          ],
+        },
       ],
     },
     {
@@ -162,6 +227,40 @@ const lesson1: Lesson = {
         'A Contradiction fights a known clue.',
         'Not Enough Information means no clue proves it either way.',
       ],
+      variants: [
+        {
+          prompt: 'The gym whistle is missing. Sort each statement into the right case file.',
+          categories: ['Fact', 'Possibility', 'Contradiction', 'Not Enough Information'],
+          cards: [
+            { id: 'c1', text: "The whistle was last seen in the coach's office." },
+            { id: 'c2', text: 'Practice ended at 4 p.m.' },
+            { id: 'c3', text: "The whistle must be in a student's bag." },
+            { id: 'c4', text: 'If it was in the office, it could still be there.' },
+            { id: 'c5', text: 'The whistle was never in the office.' },
+            { id: 'c6', text: 'Someone borrowed the whistle yesterday.' },
+          ],
+          correctAnswer: {
+            c1: 'Fact',
+            c2: 'Fact',
+            c3: 'Not Enough Information',
+            c4: 'Possibility',
+            c5: 'Contradiction',
+            c6: 'Not Enough Information',
+          },
+          feedback: {
+            correct: 'Fine. That was actual reasoning. Try not to look too proud.',
+            firstWrong: 'Ask yourself: does a clue prove this, or are you adding your own idea?',
+            secondWrong:
+              'A fact is directly stated. A possibility could be true but is not proven. A contradiction fights the clue. Unknown means no clue proves it.',
+          },
+          guidedReasoning: [
+            'A Fact is stated directly by a clue.',
+            'A Possibility could be true but is not proven.',
+            'A Contradiction fights a known clue.',
+            'Not Enough Information means no clue proves it either way.',
+          ],
+        },
+      ],
     },
     {
       id: 'l1-step-6',
@@ -186,6 +285,28 @@ const lesson1: Lesson = {
         'A safe conclusion only uses what the clue proves.',
         'The clue tells us the pass was last seen on the front desk.',
         'The other choices add ideas the clue never proved.',
+      ],
+      variants: [
+        {
+          prompt: 'Clue: the hall pass was last seen on the front desk. Which conclusion is safest?',
+          choices: [
+            { id: 'a', label: 'Mina took the pass.' },
+            { id: 'b', label: 'The pass is definitely still on the desk.' },
+            { id: 'c', label: 'The pass was last seen on the front desk.' },
+            { id: 'd', label: 'Nobody moved the pass.' },
+          ],
+          correctAnswer: 'c',
+          feedback: {
+            correct: 'Yes. A safe conclusion only repeats what the clue already proved.',
+            firstWrong: 'Pick the choice that adds nothing beyond the clue.',
+            secondWrong: 'The clue only says where the pass was last seen. Choice C adds nothing extra.',
+          },
+          guidedReasoning: [
+            'A safe conclusion only uses what the clue proves.',
+            'The clue says the pass was last seen on the front desk.',
+            'Choice C repeats only that, so it is the safest.',
+          ],
+        },
       ],
     },
     {
@@ -276,6 +397,29 @@ const lesson2: Lesson = {
         'That means Ava and Red cannot match.',
         'In a deduction grid, impossible matches get an X.',
       ],
+      variants: [
+        {
+          prompt: 'Clue: "Cruz does not have the green locker." What symbol belongs in Cruz / Green?',
+          visual: {
+            kind: 'grid',
+            rows: ['Ava', 'Ben', 'Cruz'],
+            cols: ['Red', 'Blue', 'Green'],
+            highlight: [['Cruz', 'Green']],
+            caption: 'The highlighted cell is Cruz / Green.',
+          },
+          correctAnswer: 'X',
+          feedback: {
+            correct: "Correct. 'Does not have' means this match is impossible.",
+            firstWrong: 'Not quite. The clue rules this option out.',
+            secondWrong: 'If Cruz does not have green, Cruz / Green must be X.',
+          },
+          guidedReasoning: [
+            'The clue says Cruz does not have the green locker.',
+            'That means Cruz and Green cannot match.',
+            'In a deduction grid, impossible matches get an X.',
+          ],
+        },
+      ],
     },
     {
       id: 'l2-step-3',
@@ -305,6 +449,29 @@ const lesson2: Lesson = {
         'That is a confirmed match.',
         'Confirmed matches get a checkmark.',
       ],
+      variants: [
+        {
+          prompt: 'Clue: "Cruz has the blue locker." What symbol belongs in Cruz / Blue?',
+          visual: {
+            kind: 'grid',
+            rows: ['Ava', 'Ben', 'Cruz'],
+            cols: ['Red', 'Blue', 'Green'],
+            highlight: [['Cruz', 'Blue']],
+            caption: 'The highlighted cell is Cruz / Blue.',
+          },
+          correctAnswer: 'check',
+          feedback: {
+            correct: 'Correct. A confirmed match gets a checkmark.',
+            firstWrong: 'The clue confirms this match. What symbol means "yes"?',
+            secondWrong: 'Cruz HAS the blue locker, so Cruz / Blue is a confirmed match: a check.',
+          },
+          guidedReasoning: [
+            'The clue says Cruz has the blue locker.',
+            'That is a confirmed match.',
+            'Confirmed matches get a checkmark.',
+          ],
+        },
+      ],
     },
     {
       id: 'l2-step-4',
@@ -331,6 +498,27 @@ const lesson2: Lesson = {
         'X means impossible. Check means confirmed.',
         'Blank is neither — it means you still do not know.',
       ],
+      variants: [
+        {
+          prompt: 'What does an X in a cell mean?',
+          choices: [
+            { id: 'a', label: 'This match is impossible.' },
+            { id: 'b', label: 'This match is confirmed.' },
+            { id: 'c', label: 'We do not know yet.' },
+            { id: 'd', label: 'The puzzle is finished.' },
+          ],
+          correctAnswer: 'a',
+          feedback: {
+            correct: 'Right. An X means a clue ruled this match out.',
+            firstWrong: 'An X is not the same as a checkmark. Think about what a clue ruled out.',
+            secondWrong: 'An X means a clue proved this match is impossible.',
+          },
+          guidedReasoning: [
+            'Check means confirmed. Blank means unknown.',
+            'X means a clue ruled it out — the match is impossible.',
+          ],
+        },
+      ],
     },
     {
       id: 'l2-step-5',
@@ -352,6 +540,27 @@ const lesson2: Lesson = {
         'Ben has Blue, so Ben / Blue is a check.',
         'Each person has only one color.',
         'So Ben / Red and Ben / Green must both be X.',
+      ],
+      variants: [
+        {
+          prompt: "Cruz has the Blue locker. Mark Cruz's whole row.",
+          rows: ['Cruz'],
+          cols: ['Red', 'Blue', 'Green'],
+          clues: ['Cruz has the blue locker.'],
+          correctAnswer: {
+            Cruz: { Red: 'X', Blue: 'check', Green: 'X' },
+          },
+          feedback: {
+            correct: 'Right. Cruz is Blue, so Red and Green are impossible for Cruz.',
+            firstWrong: 'If Cruz is confirmed Blue, his other colors must be impossible.',
+            secondWrong: 'Cruz / Blue = check. Then Cruz / Red = X and Cruz / Green = X.',
+          },
+          guidedReasoning: [
+            'Cruz has Blue, so Cruz / Blue is a check.',
+            'Each person has only one color.',
+            'So Cruz / Red and Cruz / Green must both be X.',
+          ],
+        },
       ],
     },
     {
@@ -386,6 +595,38 @@ const lesson2: Lesson = {
         'Ben already has Blue.',
         'So Ava and Cruz cannot be Blue — both get an X.',
       ],
+      variants: [
+        {
+          prompt: 'Cruz has Blue. What happens to Ava and Ben in the Blue column?',
+          visual: {
+            kind: 'grid',
+            rows: ['Ava', 'Ben', 'Cruz'],
+            cols: ['Red', 'Blue', 'Green'],
+            marks: { Cruz: { Blue: 'check' } },
+            highlight: [
+              ['Ava', 'Blue'],
+              ['Ben', 'Blue'],
+            ],
+            caption: 'Cruz / Blue is confirmed. What about the rest of the Blue column?',
+          },
+          choices: [
+            { id: 'still', label: 'They could still be Blue' },
+            { id: 'x', label: 'They both become X (cannot be Blue)' },
+            { id: 'nothing', label: 'Nothing changes' },
+          ],
+          correctAnswer: 'x',
+          feedback: {
+            correct: 'Correct. One color belongs to one person, so the rest of the Blue column is X.',
+            firstWrong: 'Only one person can have Blue. Cruz already has it.',
+            secondWrong: 'If Cruz has Blue, nobody else can. Ava / Blue and Ben / Blue both become X.',
+          },
+          guidedReasoning: [
+            'Each color belongs to exactly one person.',
+            'Cruz already has Blue.',
+            'So Ava and Ben cannot be Blue — both get an X.',
+          ],
+        },
+      ],
     },
     {
       id: 'l2-step-7',
@@ -414,6 +655,34 @@ const lesson2: Lesson = {
         'Ben has Blue, so Ben / Blue is a check and the rest of that row and column are X.',
         'Ava is not Red and cannot be Blue, so Ava must be Green.',
         'That leaves Red for Cruz.',
+      ],
+      variants: [
+        {
+          prompt: 'Three students each have one locker color. Use the clues to match each student to a color.',
+          rows: ['Ava', 'Ben', 'Cruz'],
+          cols: ['Red', 'Blue', 'Green'],
+          clues: [
+            'Cruz has the blue locker.',
+            'Ben does not have the red locker.',
+            'Ava does not have the green locker.',
+          ],
+          correctAnswer: {
+            Ava: { Red: 'check', Blue: 'X', Green: 'X' },
+            Ben: { Red: 'X', Blue: 'X', Green: 'check' },
+            Cruz: { Red: 'X', Blue: 'check', Green: 'X' },
+          },
+          feedback: {
+            correct: 'Correct. The grid did its job. Amazing what happens when you listen to it.',
+            firstWrong: 'Not quite. Remember: once Cruz gets Blue, nobody else can have Blue.',
+            secondWrong:
+              "Let's walk it. Cruz is Blue. Ben is not Red and cannot be Blue, so Ben must be Green. That leaves Red for Ava.",
+          },
+          guidedReasoning: [
+            'Cruz has Blue, so Cruz / Blue is a check and the rest of that row and column are X.',
+            'Ben is not Red and cannot be Blue, so Ben must be Green.',
+            'That leaves Red for Ava.',
+          ],
+        },
       ],
     },
     {
@@ -503,6 +772,38 @@ const lesson3: Lesson = {
         'Priya is confirmed for Art.',
         'So everyone else in the Art column must be X.',
       ],
+      variants: [
+        {
+          prompt: 'If Imani is Robotics, what happens to everyone else in the Robotics column?',
+          visual: {
+            kind: 'grid',
+            rows: ['Imani', 'Jalen', 'Priya'],
+            cols: ['Robotics', 'Chess', 'Art'],
+            marks: { Imani: { Robotics: 'check' } },
+            highlight: [
+              ['Jalen', 'Robotics'],
+              ['Priya', 'Robotics'],
+            ],
+            caption: 'Imani / Robotics is confirmed. Look at the rest of the Robotics column.',
+          },
+          choices: [
+            { id: 'cannot', label: 'They cannot be Robotics' },
+            { id: 'maybe', label: 'They might still be Robotics' },
+            { id: 'nothing', label: 'Nothing changes' },
+          ],
+          correctAnswer: 'cannot',
+          feedback: {
+            correct: 'Right. One club goes to one person, so the rest of the Robotics column is impossible.',
+            firstWrong: 'Each club belongs to only one person. Imani already took Robotics.',
+            secondWrong: 'If Imani is Robotics, nobody else can be Robotics. The rest of the column becomes X.',
+          },
+          guidedReasoning: [
+            'Each club goes to exactly one person.',
+            'Imani is confirmed for Robotics.',
+            'So everyone else in the Robotics column must be X.',
+          ],
+        },
+      ],
     },
     {
       id: 'l3-step-3',
@@ -523,6 +824,24 @@ const lesson3: Lesson = {
       guidedReasoning: [
         'The clue directly says Priya joined Art.',
         'A directly confirmed match gets a checkmark.',
+      ],
+      variants: [
+        {
+          prompt: 'Clue: "Jalen joined Robotics." Mark the confirmed cell: Jalen / Robotics.',
+          clues: ['Jalen joined Robotics.'],
+          targetRow: 'Jalen',
+          targetCol: 'Robotics',
+          correctAnswer: 'check',
+          feedback: {
+            correct: 'Confirmed. Jalen / Robotics is a check.',
+            firstWrong: 'The clue confirms this match. What symbol means "yes"?',
+            secondWrong: 'Jalen joined Robotics — that is a confirmed match, so it gets a check.',
+          },
+          guidedReasoning: [
+            'The clue directly says Jalen joined Robotics.',
+            'A directly confirmed match gets a checkmark.',
+          ],
+        },
       ],
     },
     {
@@ -551,6 +870,29 @@ const lesson3: Lesson = {
         'Art is taken, so the rest of the Art column (Imani, Jalen) is impossible.',
         'All four of those cells become X.',
       ],
+      variants: [
+        {
+          prompt:
+            "Imani is Chess. Tap the cells that MUST become X because of it (the rest of Imani's row and the rest of the Chess column). Leave Imani / Chess as a check.",
+          clues: ['Imani joined Chess.'],
+          correctAnswer: {
+            Imani: { Robotics: 'X', Chess: 'check', Art: 'X' },
+            Jalen: { Chess: 'X' },
+            Priya: { Chess: 'X' },
+          },
+          feedback: {
+            correct: 'Good. You let the checkmark do the heavy lifting.',
+            firstWrong: 'One checkmark changes the whole row and column. Imani has Chess, so Chess is taken.',
+            secondWrong:
+              'Mark Imani / Robotics and Imani / Art as X (her row), and Jalen / Chess and Priya / Chess as X (the Chess column).',
+          },
+          guidedReasoning: [
+            'Imani has Chess, so the rest of her row (Robotics, Art) is impossible.',
+            'Chess is taken, so the rest of the Chess column (Jalen, Priya) is impossible.',
+            'All four of those cells become X.',
+          ],
+        },
+      ],
     },
     {
       id: 'l3-step-5',
@@ -573,6 +915,28 @@ const lesson3: Lesson = {
         'Ada joined Music, so Ada / Music is a check.',
         'Ada cannot also be Drama, and Bo cannot be Music — both X.',
         'That leaves Drama for Bo.',
+      ],
+      variants: [
+        {
+          prompt: 'Quick 2x2 practice. Clue: "Cole joined Coding." Complete the grid.',
+          rows: ['Cole', 'Dee'],
+          cols: ['Coding', 'Art'],
+          clues: ['Cole joined Coding.', 'Each person joins one club; each club has one person.'],
+          correctAnswer: {
+            Cole: { Coding: 'check', Art: 'X' },
+            Dee: { Coding: 'X', Art: 'check' },
+          },
+          feedback: {
+            correct: 'Nice. One check forced the other three cells.',
+            firstWrong: 'Start with the confirmed cell, then eliminate across the row and column.',
+            secondWrong: 'Cole / Coding = check. So Cole / Art = X, Dee / Coding = X, and Dee / Art = check.',
+          },
+          guidedReasoning: [
+            'Cole joined Coding, so Cole / Coding is a check.',
+            'Cole cannot also be Art, and Dee cannot be Coding — both X.',
+            'That leaves Art for Dee.',
+          ],
+        },
       ],
     },
     {
@@ -599,6 +963,28 @@ const lesson3: Lesson = {
         'Priya is Art, so the Art column is X for Imani and Jalen.',
         'Imani is not Robotics and not Art, so Imani is Chess.',
         'That leaves Robotics for Jalen.',
+      ],
+      variants: [
+        {
+          prompt: 'Three students joined three different clubs. Use the clues to complete the grid.',
+          clues: ['Jalen joined Art.', 'Imani did not join Chess.', 'Priya did not join Robotics.'],
+          correctAnswer: {
+            Imani: { Robotics: 'check', Chess: 'X', Art: 'X' },
+            Jalen: { Robotics: 'X', Chess: 'X', Art: 'check' },
+            Priya: { Robotics: 'X', Chess: 'check', Art: 'X' },
+          },
+          feedback: {
+            correct: 'Good. You let the checkmark do the heavy lifting.',
+            firstWrong: 'One checkmark changes the whole row and column. Jalen has Art, so Art is taken.',
+            secondWrong:
+              'Jalen is Art. Imani is not Chess and cannot be Art, so Imani is Robotics. That leaves Chess for Priya.',
+          },
+          guidedReasoning: [
+            'Jalen is Art, so the Art column is X for Imani and Priya.',
+            'Imani is not Chess and not Art, so Imani is Robotics.',
+            'That leaves Chess for Priya.',
+          ],
+        },
       ],
     },
     {
@@ -629,6 +1015,35 @@ const lesson3: Lesson = {
         'Each club goes to exactly one person.',
         'Priya took Art.',
         'So no one else can be Art.',
+      ],
+      variants: [
+        {
+          prompt: 'If Jalen is Robotics, what else must be true?',
+          visual: {
+            kind: 'grid',
+            rows: ['Imani', 'Jalen', 'Priya'],
+            cols: ['Robotics', 'Chess', 'Art'],
+            marks: { Jalen: { Robotics: 'check' } },
+            caption: 'Jalen is confirmed for Robotics.',
+          },
+          choices: [
+            { id: 'a', label: 'Imani is also Robotics.' },
+            { id: 'b', label: 'Priya might still be Robotics.' },
+            { id: 'c', label: 'Nobody else is Robotics.' },
+            { id: 'd', label: 'Jalen is also Chess.' },
+          ],
+          correctAnswer: 'c',
+          feedback: {
+            correct: 'One club can only belong to one person. If Jalen is Robotics, Robotics is taken.',
+            firstWrong: 'Remember the rule: one club, one person.',
+            secondWrong: 'If Jalen is Robotics, nobody else can be Robotics. That is the consequence.',
+          },
+          guidedReasoning: [
+            'Each club goes to exactly one person.',
+            'Jalen took Robotics.',
+            'So no one else can be Robotics.',
+          ],
+        },
       ],
     },
     {
@@ -712,6 +1127,33 @@ const lesson4: Lesson = {
         'Clue 1 is a rule: if Gym, then the coach saw it.',
         'So assuming Gym forces the coach to have seen it.',
       ],
+      variants: [
+        {
+          prompt:
+            'Clue 1: "If the badge is in the Library, then it is on a shelf." If the badge IS in the Library, what must be true?',
+          visual: {
+            kind: 'clues',
+            title: 'Case Clues',
+            items: ['If the badge is in the Library, then it is on a shelf.'],
+          },
+          choices: [
+            { id: 'on', label: 'The badge is on a shelf' },
+            { id: 'off', label: 'The badge is not on a shelf' },
+            { id: 'nothing', label: 'Nothing has to be true' },
+          ],
+          correctAnswer: 'on',
+          feedback: {
+            correct: 'Right. The "if-then" clue forces it: Library means it is on a shelf.',
+            firstWrong: 'Read the clue as a rule: IF Library, THEN on a shelf.',
+            secondWrong:
+              'The clue says if it is in the Library, then it is on a shelf. So Library forces "on a shelf".',
+          },
+          guidedReasoning: [
+            'Clue 1 is a rule: if Library, then on a shelf.',
+            'So assuming Library forces the badge to be on a shelf.',
+          ],
+        },
+      ],
     },
     {
       id: 'l4-step-3',
@@ -737,6 +1179,30 @@ const lesson4: Lesson = {
         secondWrong: 'Clue 2 says directly: the coach did NOT see the badge.',
       },
       guidedReasoning: ['Clue 2 states it plainly: the coach did not see the badge.'],
+      variants: [
+        {
+          prompt: 'Clue 2 says: "The badge is not on a shelf." Is the badge on a shelf?',
+          visual: {
+            kind: 'clues',
+            title: 'Case Clues',
+            items: [
+              'If the badge is in the Library, then it is on a shelf.',
+              'The badge is not on a shelf.',
+            ],
+          },
+          choices: [
+            { id: 'yes', label: 'Yes' },
+            { id: 'no', label: 'No' },
+          ],
+          correctAnswer: 'no',
+          feedback: {
+            correct: 'Correct. Clue 2 states the badge is not on a shelf.',
+            firstWrong: 'Reread clue 2 carefully.',
+            secondWrong: 'Clue 2 says directly: the badge is NOT on a shelf.',
+          },
+          guidedReasoning: ['Clue 2 states it plainly: the badge is not on a shelf.'],
+        },
+      ],
     },
     {
       id: 'l4-step-4',
@@ -768,6 +1234,37 @@ const lesson4: Lesson = {
         'But clue 2 says the coach did not see it.',
         'Both cannot be true — a contradiction. So the Gym is impossible.',
       ],
+      variants: [
+        {
+          prompt:
+            'The Library would mean the badge is on a shelf. But it is not on a shelf. Can the badge still be in the Library?',
+          visual: {
+            kind: 'clues',
+            title: 'Clash to check',
+            items: [
+              'Assume Library → the badge is on a shelf.',
+              'But clue 2: the badge is NOT on a shelf.',
+            ],
+          },
+          choices: [
+            { id: 'yes', label: 'Yes, it can still be the Library' },
+            { id: 'no', label: 'No, the Library is impossible' },
+          ],
+          correctAnswer: 'no',
+          feedback: {
+            correct: 'Yes. The Library guess collapses under its own nonsense.',
+            firstWrong: 'Careful. The Library would mean on a shelf. But it is not on a shelf.',
+            secondWrong:
+              'Assume Library. Then the badge is on a shelf. But clue 2 says it is not. That breaks. The Library is impossible.',
+          },
+          guidedReasoning: [
+            'Assume the badge is in the Library.',
+            'Then clue 1 forces: it is on a shelf.',
+            'But clue 2 says it is not on a shelf.',
+            'Both cannot be true — a contradiction. So the Library is impossible.',
+          ],
+        },
+      ],
     },
     {
       id: 'l4-step-5',
@@ -794,6 +1291,30 @@ const lesson4: Lesson = {
         'Gym creates a contradiction, so Gym = X.',
         'Clue 3 says not the Cafeteria, so Cafeteria = X.',
         'Only the Library is left, so it gets a check.',
+      ],
+      variants: [
+        {
+          prompt:
+            "Cross out the impossible locations. The Library breaks a clue, and clue 3 says it is not in the Gym. Mark the badge's location row.",
+          clues: [
+            'If the badge is in the Library, then it is on a shelf.',
+            'The badge is not on a shelf.',
+            'The badge is not in the Gym.',
+          ],
+          correctAnswer: {
+            Badge: { Gym: 'X', Library: 'X', Cafeteria: 'check' },
+          },
+          feedback: {
+            correct: 'Clean elimination. Library and Gym are out, so the Cafeteria stands.',
+            firstWrong: 'The Library is impossible (contradiction) and the Gym is ruled out by clue 3.',
+            secondWrong: 'Mark Library = X and Gym = X. The only one left, Cafeteria, is a check.',
+          },
+          guidedReasoning: [
+            'The Library creates a contradiction, so Library = X.',
+            'Clue 3 says not the Gym, so Gym = X.',
+            'Only the Cafeteria is left, so it gets a check.',
+          ],
+        },
       ],
     },
     {
@@ -826,6 +1347,38 @@ const lesson4: Lesson = {
         'Gym is impossible because of the contradiction.',
         'The Cafeteria is impossible by clue 3.',
         'The Library is the only place left.',
+      ],
+      variants: [
+        {
+          prompt: 'Where is the badge?',
+          visual: {
+            kind: 'options',
+            title: 'What we ruled out',
+            items: [
+              { label: 'Gym', mark: 'X' },
+              { label: 'Library', mark: 'X' },
+              { label: 'Cafeteria', mark: 'unknown' },
+            ],
+          },
+          choices: [
+            { id: 'a', label: 'Gym' },
+            { id: 'b', label: 'Library' },
+            { id: 'c', label: 'Cafeteria' },
+            { id: 'd', label: 'Cannot be determined' },
+          ],
+          correctAnswer: 'c',
+          feedback: {
+            correct: 'Correct. The Cafeteria survives because the other two locations fail.',
+            firstWrong: 'Cross out the Library and the Gym. What location survives?',
+            secondWrong:
+              'The Library is impossible (contradiction) and the Gym is ruled out. Only the Cafeteria remains.',
+          },
+          guidedReasoning: [
+            'The Library is impossible because of the contradiction.',
+            'The Gym is impossible by clue 3.',
+            'The Cafeteria is the only place left.',
+          ],
+        },
       ],
     },
     {
@@ -915,6 +1468,32 @@ const lesson5: Lesson = {
         secondWrong: 'AND only succeeds when both parts are true. One is not enough.',
       },
       guidedReasoning: ['AND means both parts must be true.', 'So a single true switch is not enough.'],
+      variants: [
+        {
+          prompt: 'For AND, if BOTH switches are ON, does the door open?',
+          visual: {
+            kind: 'switches',
+            title: 'AND needs both',
+            op: 'AND',
+            items: [
+              { label: 'Keycard', on: true },
+              { label: 'Code', on: true },
+            ],
+            result: { label: 'Door open', open: true },
+          },
+          choices: [
+            { id: 'yes', label: 'Yes, both ON opens it' },
+            { id: 'no', label: 'No, both ON is still not enough' },
+          ],
+          correctAnswer: 'yes',
+          feedback: {
+            correct: 'Right. AND opens only when both parts are true — and here both are.',
+            firstWrong: 'AND wants both parts. Here you have both.',
+            secondWrong: 'AND succeeds when both parts are true. Both are ON, so the door opens.',
+          },
+          guidedReasoning: ['AND means both parts must be true.', 'Both switches are ON, so AND is satisfied.'],
+        },
+      ],
     },
     {
       id: 'l5-step-3',
@@ -937,6 +1516,28 @@ const lesson5: Lesson = {
         'The door uses AND.',
         'AND needs both parts true.',
         'Turn ON both the keycard and the code.',
+      ],
+      variants: [
+        {
+          prompt: 'Door 1 opens only if the power is on AND the key is turned. Open the door.',
+          switches: [
+            { id: 'power', label: 'Power on' },
+            { id: 'key', label: 'Key turned' },
+          ],
+          rule: { kind: 'and', operands: [{ kind: 'var', id: 'power' }, { kind: 'var', id: 'key' }] },
+          expectedSolution: { power: true, key: true },
+          correctAnswer: true,
+          feedback: {
+            correct: 'Yes. AND means both switches must be true.',
+            firstWrong: 'AND is greedy. It wants both. One true part is not enough.',
+            secondWrong: 'AND means both switches must be ON. Turn on the power and the key.',
+          },
+          guidedReasoning: [
+            'The door uses AND.',
+            'AND needs both parts true.',
+            'Turn ON both the power and the key.',
+          ],
+        },
       ],
     },
     {
@@ -966,6 +1567,35 @@ const lesson5: Lesson = {
         secondWrong: 'OR needs at least one true part. Both also works, but one is enough.',
       },
       guidedReasoning: ['OR means at least one part must be true.', 'One true switch already satisfies OR.'],
+      variants: [
+        {
+          prompt: 'For OR, if both switches are OFF, does the door open?',
+          visual: {
+            kind: 'switches',
+            title: 'OR needs at least one',
+            op: 'OR',
+            items: [
+              { label: 'Badge', on: false },
+              { label: 'Pass', on: false },
+            ],
+            result: { label: 'Door locked', open: false },
+          },
+          choices: [
+            { id: 'yes', label: 'Yes, it opens' },
+            { id: 'no', label: 'No, it stays closed' },
+          ],
+          correctAnswer: 'no',
+          feedback: {
+            correct: 'Right. OR needs at least one ON. Both OFF means it stays closed.',
+            firstWrong: 'OR needs at least one true part. You have none.',
+            secondWrong: 'OR opens with at least one ON. With both OFF, it stays closed.',
+          },
+          guidedReasoning: [
+            'OR means at least one part must be true.',
+            'Both switches are OFF, so OR is not satisfied.',
+          ],
+        },
+      ],
     },
     {
       id: 'l5-step-5',
@@ -988,6 +1618,27 @@ const lesson5: Lesson = {
         'OR needs at least one part true.',
         'Turn ON the badge, the pass, or both.',
       ],
+      variants: [
+        {
+          prompt: 'Door 2 opens if you have a ticket OR a wristband. Open the door.',
+          switches: [
+            { id: 'ticket', label: 'Ticket' },
+            { id: 'wristband', label: 'Wristband' },
+          ],
+          rule: { kind: 'or', operands: [{ kind: 'var', id: 'ticket' }, { kind: 'var', id: 'wristband' }] },
+          correctAnswer: true,
+          feedback: {
+            correct: 'Correct. OR is satisfied when at least one option is true.',
+            firstWrong: 'OR needs at least one true part. You gave it nothing.',
+            secondWrong: 'Flip at least one switch ON — ticket or wristband.',
+          },
+          guidedReasoning: [
+            'The door uses OR.',
+            'OR needs at least one part true.',
+            'Turn ON the ticket, the wristband, or both.',
+          ],
+        },
+      ],
     },
     {
       id: 'l5-step-6',
@@ -1007,6 +1658,25 @@ const lesson5: Lesson = {
         'The door uses NOT.',
         'NOT flips true and false.',
         'For "NOT active" to be true, the alarm must be OFF.',
+      ],
+      variants: [
+        {
+          prompt: 'Door 3 opens if the lockdown is NOT on. Open the door.',
+          switches: [{ id: 'lockdown', label: 'Lockdown on' }],
+          rule: { kind: 'not', operand: { kind: 'var', id: 'lockdown' } },
+          expectedSolution: { lockdown: false },
+          correctAnswer: true,
+          feedback: {
+            correct: 'Correct. NOT on means the lockdown must be off.',
+            firstWrong: 'NOT flips the statement. If the lockdown is on, "NOT on" is false.',
+            secondWrong: 'Turn the lockdown OFF. NOT on means the lockdown must be off.',
+          },
+          guidedReasoning: [
+            'The door uses NOT.',
+            'NOT flips true and false.',
+            'For "NOT on" to be true, the lockdown must be OFF.',
+          ],
+        },
       ],
     },
     {
@@ -1029,6 +1699,27 @@ const lesson5: Lesson = {
         'Parentheses are evaluated first.',
         'The AND pair is inside the parentheses.',
         'So you handle the AND pair before the OR.',
+      ],
+      variants: [
+        {
+          prompt: 'In (Power on AND Key turned) OR Master switch, what should you check first?',
+          choices: [
+            { id: 'pair', label: 'The AND pair (power and key)' },
+            { id: 'override', label: 'The master switch' },
+            { id: 'random', label: 'Random switches' },
+          ],
+          correctAnswer: 'pair',
+          feedback: {
+            correct: 'Right. Handle the parentheses (the AND pair) first.',
+            firstWrong: 'Parentheses come first in logic, just like in math.',
+            secondWrong: 'The AND pair is inside parentheses, so it is evaluated first.',
+          },
+          guidedReasoning: [
+            'Parentheses are evaluated first.',
+            'The AND pair is inside the parentheses.',
+            'So you handle the AND pair before the OR.',
+          ],
+        },
       ],
     },
     {
@@ -1059,6 +1750,36 @@ const lesson5: Lesson = {
         'The panel opens if the AND pair is true, OR if the override is on.',
         'Turn on BOTH the keycard and the code to satisfy the AND pair.',
         'Or just flip the override on by itself.',
+      ],
+      variants: [
+        {
+          prompt: 'The final panel opens if: (Power on AND Key turned) OR Master switch. Open it.',
+          switches: [
+            { id: 'power', label: 'Power on' },
+            { id: 'key', label: 'Key turned' },
+            { id: 'master', label: 'Master switch' },
+          ],
+          rule: {
+            kind: 'or',
+            operands: [
+              { kind: 'and', operands: [{ kind: 'var', id: 'power' }, { kind: 'var', id: 'key' }] },
+              { kind: 'var', id: 'master' },
+            ],
+          },
+          expectedSolution: { power: true, key: true, master: false },
+          correctAnswer: true,
+          feedback: {
+            correct: 'Good. You handled AND before OR. Maybe the lights taught you something.',
+            firstWrong:
+              'Handle the parentheses first. Power and key work as a pair. The master switch is a separate way through.',
+            secondWrong: 'Turn on power AND key (the pair), or turn on the master switch by itself.',
+          },
+          guidedReasoning: [
+            'The panel opens if the AND pair is true, OR if the master switch is on.',
+            'Turn on BOTH power and key to satisfy the AND pair.',
+            'Or just flip the master switch on by itself.',
+          ],
+        },
       ],
     },
     {
@@ -1136,6 +1857,22 @@ const lesson6: Lesson = {
         secondWrong: 'First look at the clues. Then state the conclusion.',
       },
       guidedReasoning: ['Reasoning starts with the clues.', 'The conclusion comes at the end.'],
+      variants: [
+        {
+          prompt: 'Put these two steps in the right order.',
+          items: [
+            { id: 'look', text: 'Read the evidence first.' },
+            { id: 'conclude', text: 'Then decide the answer.' },
+          ],
+          correctAnswer: ['look', 'conclude'],
+          feedback: {
+            correct: 'Right. Evidence first, decision last.',
+            firstWrong: 'You cannot decide before you read the evidence.',
+            secondWrong: 'First read the evidence. Then decide the answer.',
+          },
+          guidedReasoning: ['Reasoning starts with the evidence.', 'The decision comes at the end.'],
+        },
+      ],
     },
     {
       id: 'l6-step-3',
@@ -1158,6 +1895,27 @@ const lesson6: Lesson = {
         'Then add the evidence (the camera did not record it).',
         'Then the conclusion follows (not the Lab).',
       ],
+      variants: [
+        {
+          prompt: 'Order these three reasoning steps: rule, evidence, conclusion.',
+          items: [
+            { id: 'rule', text: 'If the trophy were in the Office, the door log would show it.' },
+            { id: 'evidence', text: 'The door log shows nothing.' },
+            { id: 'concl', text: 'So the trophy is not in the Office.' },
+          ],
+          correctAnswer: ['rule', 'evidence', 'concl'],
+          feedback: {
+            correct: 'Yes. Rule, then evidence, then conclusion.',
+            firstWrong: 'Start with the rule, then bring in the evidence, then conclude.',
+            secondWrong: 'Order: the "if-then" rule, then "the door log shows nothing", then "not the Office".',
+          },
+          guidedReasoning: [
+            'Start with the rule (the if-then statement).',
+            'Then add the evidence (the door log shows nothing).',
+            'Then the conclusion follows (not the Office).',
+          ],
+        },
+      ],
     },
     {
       id: 'l6-step-4',
@@ -1179,6 +1937,28 @@ const lesson6: Lesson = {
         'The Lab rule says: if Lab, then the camera recorded it.',
         'The clue "the camera did not record it" contradicts that.',
         'So that clue eliminates the Lab.',
+      ],
+      variants: [
+        {
+          prompt: 'Which clue lets you eliminate the Office?',
+          choices: [
+            { id: 'c1', label: 'If the trophy is in the Office, the door log records it.' },
+            { id: 'c2', label: 'The door log recorded nothing.' },
+            { id: 'c3', label: 'The trophy is not in the Lab.' },
+          ],
+          correctAnswer: 'c2',
+          feedback: {
+            correct: 'Right. The door-log clue collides with the Office rule, eliminating the Office.',
+            firstWrong: 'Which clue contradicts what the Office would require?',
+            secondWrong:
+              'The Office rule says the door log WOULD record it. "The door log recorded nothing" breaks that — so it eliminates the Office.',
+          },
+          guidedReasoning: [
+            'The Office rule says: if Office, then the door log records it.',
+            'The clue "the door log recorded nothing" contradicts that.',
+            'So that clue eliminates the Office.',
+          ],
+        },
       ],
     },
     {
@@ -1208,6 +1988,33 @@ const lesson6: Lesson = {
         'Eliminate the Office (D).',
         'Only the Auditorium remains (E).',
       ],
+      variants: [
+        {
+          prompt:
+            'The science fair trophy is in one of three rooms: Lab, Auditorium, or Office. Put the reasoning steps in the correct order.',
+          items: [
+            { id: 'A', text: 'The trophy cannot be in the Office.' },
+            { id: 'B', text: 'If the trophy were in the Office, the door log would show it.' },
+            { id: 'C', text: 'The door log shows nothing.' },
+            { id: 'D', text: 'The trophy is not in the Lab.' },
+            { id: 'E', text: 'The only place left is the Auditorium.' },
+          ],
+          correctAnswer: ['B', 'C', 'A', 'D', 'E'],
+          feedback: {
+            correct: 'Yes. That is a case, not a pile of sentences.',
+            firstWrong: 'Your conclusion came too early. Build from clue to elimination to answer.',
+            secondWrong:
+              'Start with the Office rule, then use the door-log clue to eliminate the Office. Then eliminate the Lab. Then choose what remains.',
+          },
+          guidedReasoning: [
+            'Begin with the Office rule (B).',
+            'Add the door-log evidence (C).',
+            'Conclude the Office is out (A).',
+            'Eliminate the Lab (D).',
+            'Only the Auditorium remains (E).',
+          ],
+        },
+      ],
     },
     {
       id: 'l6-step-6',
@@ -1230,6 +2037,27 @@ const lesson6: Lesson = {
         'A strong reason uses the clues directly.',
         'The Lab rule plus "the camera did not record it" rules out the Lab.',
       ],
+      variants: [
+        {
+          prompt: "Why can't the trophy be in the Office?",
+          choices: [
+            { id: 'a', label: 'Because the Lab is locked.' },
+            { id: 'b', label: 'Because if it were in the Office, the door log would show it, but it showed nothing.' },
+            { id: 'c', label: 'Because the Auditorium is bigger.' },
+            { id: 'd', label: 'Because trophies are never in offices.' },
+          ],
+          correctAnswer: 'b',
+          feedback: {
+            correct: 'The reason must connect directly to the clues. No random assumptions.',
+            firstWrong: 'The reason must connect directly to the clues. No random assumptions.',
+            secondWrong: 'The Office rule plus the door-log evidence is the only reason that uses the clues.',
+          },
+          guidedReasoning: [
+            'A strong reason uses the clues directly.',
+            'The Office rule plus "the door log showed nothing" rules out the Office.',
+          ],
+        },
+      ],
     },
     {
       id: 'l6-step-7',
@@ -1251,6 +2079,27 @@ const lesson6: Lesson = {
       guidedReasoning: [
         'A strong explanation is built from the clues.',
         'It moves in order from clues to elimination to conclusion.',
+      ],
+      variants: [
+        {
+          prompt: 'What makes a strong explanation?',
+          choices: [
+            { id: 'a', label: 'It connects clues in order to reach the conclusion.' },
+            { id: 'b', label: 'It uses the biggest words.' },
+            { id: 'c', label: 'It states the answer first.' },
+            { id: 'd', label: 'It skips the clues.' },
+          ],
+          correctAnswer: 'a',
+          feedback: {
+            correct: 'Exactly. Clue, clue, elimination, conclusion.',
+            firstWrong: 'Big words and shortcuts are not reasoning.',
+            secondWrong: 'A strong explanation connects the clues in order to reach the conclusion.',
+          },
+          guidedReasoning: [
+            'A strong explanation is built from the clues.',
+            'It moves in order from clues to elimination to conclusion.',
+          ],
+        },
       ],
     },
     {
@@ -1354,6 +2203,40 @@ const lesson7: Lesson = {
         'Conditional clue: links two facts ("the recruit with the Keycard opened the Blue Door").',
         '"Nora might have found the Map" proves nothing — not enough information.',
       ],
+      variants: [
+        {
+          prompt: 'Sort these clues before solving. A direct fact gives a match. An elimination removes a possibility. A conditional clue links two facts.',
+          categories: ['Direct Fact', 'Elimination', 'Conditional Clue', 'Not Enough Information'],
+          cards: [
+            { id: 'c1', text: 'Nora did not find the Flashlight.' },
+            { id: 'c2', text: 'The recruit with the Keycard opened the Blue Door.' },
+            { id: 'c3', text: 'Tess opened the Blue Door.' },
+            { id: 'c4', text: 'Malik might have found the Map.' },
+            { id: 'c5', text: 'Malik did not open the Red Door.' },
+            { id: 'c6', text: 'The Flashlight was not used on the Blue Door.' },
+          ],
+          correctAnswer: {
+            c1: 'Elimination',
+            c2: 'Conditional Clue',
+            c3: 'Direct Fact',
+            c4: 'Not Enough Information',
+            c5: 'Elimination',
+            c6: 'Elimination',
+          },
+          feedback: {
+            correct: 'Sorted. Now you know which clues give matches and which remove options.',
+            firstWrong: 'Sort the clues by what they do, not by what they mention.',
+            secondWrong:
+              'A direct fact gives a match (Tess opened Blue). An elimination removes a possibility ("did not"). A conditional clue links two facts ("the recruit with X did Y"). "Might have" is not enough information.',
+          },
+          guidedReasoning: [
+            'Direct fact: states a match outright (Tess opened the Blue Door).',
+            'Elimination: removes an option ("did not...").',
+            'Conditional clue: links two facts ("the recruit with the Keycard opened the Blue Door").',
+            '"Malik might have found the Map" proves nothing — not enough information.',
+          ],
+        },
+      ],
     },
     {
       id: 'l7-step-4',
@@ -1388,6 +2271,39 @@ const lesson7: Lesson = {
         '"Tess opened the Green Door" is a direct fact.',
         'Direct facts unlock the rest of the chain.',
       ],
+      variants: [
+        {
+          prompt: 'Which clue is the most useful place to START?',
+          visual: {
+            kind: 'clues',
+            title: 'Your clues',
+            items: [
+              'Nora did not find the Flashlight.',
+              'The recruit with the Keycard opened the Blue Door.',
+              'Tess opened the Blue Door.',
+              'Malik might have found the Map.',
+              'Malik did not open the Red Door.',
+              'The Flashlight was not used on the Blue Door.',
+            ],
+          },
+          choices: [
+            { id: 'a', label: 'Tess opened the Blue Door.' },
+            { id: 'b', label: 'Malik might have found the Map.' },
+            { id: 'c', label: 'Nora did not find the Flashlight.' },
+          ],
+          correctAnswer: 'a',
+          feedback: {
+            correct: 'Right. A direct fact is the best starting point.',
+            firstWrong: 'Start with a clue that gives you a definite match, not a maybe.',
+            secondWrong: '"Tess opened the Blue Door" is a direct fact — the strongest starting point.',
+          },
+          guidedReasoning: [
+            'Start with the clue that gives a certain match.',
+            '"Tess opened the Blue Door" is a direct fact.',
+            'Direct facts unlock the rest of the chain.',
+          ],
+        },
+      ],
     },
     {
       id: 'l7-step-5',
@@ -1415,6 +2331,30 @@ const lesson7: Lesson = {
         'Tess opened Green, but the Flashlight was not used on Green, so Tess is not Flashlight.',
         'The Keycard opened Blue, but Tess opened Green, so Tess is not Keycard.',
         'That leaves the Map for Tess.',
+      ],
+      variants: [
+        {
+          prompt:
+            "Item grid warmup. Three recruits — Nora, Malik, and Tess — each found one item: a Keycard, a Map, or a Flashlight. Tess opened the Blue Door, and the recruit with the Keycard opened the Blue Door. Mark Tess's item row.",
+          clues: [
+            'Tess opened the Blue Door.',
+            'The recruit with the Keycard opened the Blue Door.',
+          ],
+          correctAnswer: {
+            Tess: { Keycard: 'check', Map: 'X', Flashlight: 'X' },
+          },
+          feedback: {
+            correct: 'Good. You found the item chain. I nearly smiled. Nearly.',
+            firstWrong: 'Check Tess first. The Blue Door tells you more than it looks like.',
+            secondWrong:
+              'Tess opened Blue, and the Keycard opened Blue. So Tess had the Keycard. Map and Flashlight are X.',
+          },
+          guidedReasoning: [
+            'Tess opened the Blue Door.',
+            'The Keycard opened the Blue Door, so Tess had the Keycard.',
+            'So Tess is not the Map or the Flashlight.',
+          ],
+        },
       ],
     },
     {
@@ -1447,6 +2387,32 @@ const lesson7: Lesson = {
         'Malik did not have the Flashlight, and the Map is taken, so Malik has the Keycard.',
         'That leaves the Flashlight for Nora.',
       ],
+      variants: [
+        {
+          prompt: 'Complete the full item grid. Three recruits — Nora, Malik, and Tess — each found one item: a Keycard, a Map, or a Flashlight. Use the clues to find who found each.',
+          clues: [
+            'Nora did not find the Flashlight.',
+            'Tess opened the Blue Door.',
+            'The recruit with the Keycard opened the Blue Door.',
+          ],
+          correctAnswer: {
+            Nora: { Keycard: 'X', Map: 'check', Flashlight: 'X' },
+            Malik: { Keycard: 'X', Map: 'X', Flashlight: 'check' },
+            Tess: { Keycard: 'check', Map: 'X', Flashlight: 'X' },
+          },
+          feedback: {
+            correct: 'Good. You found the item chain. I nearly smiled. Nearly.',
+            firstWrong: 'Check Tess first. The Blue Door tells you more than it looks like.',
+            secondWrong:
+              'Tess had the Keycard. Nora did not have the Flashlight and cannot have the Keycard, so Nora has the Map. That leaves the Flashlight for Malik.',
+          },
+          guidedReasoning: [
+            'Tess opened Blue and the Keycard opened Blue, so Tess has the Keycard.',
+            'Nora did not have the Flashlight, and the Keycard is taken, so Nora has the Map.',
+            'That leaves the Flashlight for Malik.',
+          ],
+        },
+      ],
     },
     {
       id: 'l7-step-7',
@@ -1468,6 +2434,25 @@ const lesson7: Lesson = {
         'The Keycard opened the Blue Door.',
         'Malik had the Keycard.',
         'So Malik opened the Blue Door — Red and Green are X for him.',
+      ],
+      variants: [
+        {
+          prompt: "Door grid warmup. The same three recruits — Nora, Malik, and Tess — each opened one door: the Red Door, the Blue Door, or the Green Door. Tess had the Keycard, and the Keycard opened the Blue Door. Mark Tess's door row.",
+          clues: ['The recruit with the Keycard opened the Blue Door.', 'Tess had the Keycard.'],
+          correctAnswer: {
+            Tess: { 'Red Door': 'X', 'Blue Door': 'check', 'Green Door': 'X' },
+          },
+          feedback: {
+            correct: 'Right. Keycard opens Blue, and Tess had the Keycard.',
+            firstWrong: 'The Keycard opens Blue, and Tess had the Keycard. That gives you Tess\'s door.',
+            secondWrong: 'Tess had the Keycard, so Tess opened the Blue Door. Her other doors are X.',
+          },
+          guidedReasoning: [
+            'The Keycard opened the Blue Door.',
+            'Tess had the Keycard.',
+            'So Tess opened the Blue Door — Red and Green are X for her.',
+          ],
+        },
       ],
     },
     {
@@ -1498,6 +2483,32 @@ const lesson7: Lesson = {
         'Malik had the Keycard, so Malik opened the Blue Door.',
         'Tess opened the Green Door.',
         'That leaves the Red Door for Nora.',
+      ],
+      variants: [
+        {
+          prompt: 'Complete the full door grid. Nora, Malik, and Tess each opened one door: the Red Door, the Blue Door, or the Green Door. Use the clues to find who opened each.',
+          clues: [
+            'Tess opened the Blue Door.',
+            'Malik did not open the Red Door.',
+            'The recruit with the Keycard opened the Blue Door.',
+            'Tess had the Keycard.',
+          ],
+          correctAnswer: {
+            Nora: { 'Red Door': 'check', 'Blue Door': 'X', 'Green Door': 'X' },
+            Malik: { 'Red Door': 'X', 'Blue Door': 'X', 'Green Door': 'check' },
+            Tess: { 'Red Door': 'X', 'Blue Door': 'check', 'Green Door': 'X' },
+          },
+          feedback: {
+            correct: 'Yes. You matched the doors without making the grid cry.',
+            firstWrong: 'Tess had the Keycard, and the Keycard opens Blue. That gives you Tess\'s door.',
+            secondWrong: 'Tess opened Blue. Malik did not open Red, so Malik opened Green. That leaves Red for Nora.',
+          },
+          guidedReasoning: [
+            'Tess had the Keycard, so Tess opened the Blue Door.',
+            'Malik did not open the Red Door, so Malik opened the Green Door.',
+            'That leaves the Red Door for Nora.',
+          ],
+        },
       ],
     },
     {
@@ -1530,6 +2541,36 @@ const lesson7: Lesson = {
         'That satisfies the AND pair, so the exit opens.',
         'You do not need the emergency override.',
       ],
+      variants: [
+        {
+          prompt:
+            'The exit opens if: (Tess opened Blue AND Malik opened Green) OR Emergency Override. You solved the case, so use the normal exit condition.',
+          switches: [
+            { id: 'tessBlue', label: 'Tess opened Blue' },
+            { id: 'malikGreen', label: 'Malik opened Green' },
+            { id: 'override', label: 'Emergency Override' },
+          ],
+          rule: {
+            kind: 'or',
+            operands: [
+              { kind: 'and', operands: [{ kind: 'var', id: 'tessBlue' }, { kind: 'var', id: 'malikGreen' }] },
+              { kind: 'var', id: 'override' },
+            ],
+          },
+          expectedSolution: { tessBlue: true, malikGreen: true, override: false },
+          correctAnswer: true,
+          feedback: {
+            correct: 'You solved the case, so the normal exit condition works. Override is not needed.',
+            firstWrong: 'You proved Tess opened Blue and Malik opened Green. Turn those on.',
+            secondWrong: 'Turn on "Tess opened Blue" AND "Malik opened Green". The override can stay off.',
+          },
+          guidedReasoning: [
+            'You proved Tess opened Blue and Malik opened Green.',
+            'That satisfies the AND pair, so the exit opens.',
+            'You do not need the emergency override.',
+          ],
+        },
+      ],
     },
     {
       id: 'l7-step-10',
@@ -1556,6 +2597,32 @@ const lesson7: Lesson = {
         'Use the eliminations to show Tess had the Map (B, C).',
         'Then solve Malik\'s item and door (D, E).',
         'Then Nora\'s door (F), and finish with the full conclusion (G).',
+      ],
+      variants: [
+        {
+          prompt: 'Put the final case explanation in order.',
+          items: [
+            { id: 'A', text: 'Tess opened the Blue Door.' },
+            { id: 'B', text: 'The Keycard opened the Blue Door, so Tess had the Keycard.' },
+            { id: 'C', text: 'Nora did not find the Flashlight, so Nora had the Map.' },
+            { id: 'D', text: 'That leaves the Flashlight for Malik.' },
+            { id: 'E', text: 'Malik did not open the Red Door, so Malik opened the Green Door.' },
+            { id: 'F', text: 'Tess opened Blue, so Nora opened the Red Door.' },
+            { id: 'G', text: 'Therefore Tess had the Keycard, Nora had the Map, Malik had the Flashlight, and all doors are solved.' },
+          ],
+          correctAnswer: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+          feedback: {
+            correct: 'Case closed. You escaped Logic Locker. Try not to tell everyone I helped.',
+            firstWrong: 'Do not start with the conclusion. Build the case from the clues.',
+            secondWrong: 'Start with Tess and the Blue Door. That unlocks the item logic, then the door logic.',
+          },
+          guidedReasoning: [
+            'Start with the direct fact: Tess opened Blue (A).',
+            'Use the conditional clue to show Tess had the Keycard (B).',
+            'Then solve the other items (C, D).',
+            'Then the doors (E, F), and finish with the full conclusion (G).',
+          ],
+        },
       ],
     },
     {

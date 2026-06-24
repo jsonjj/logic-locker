@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { getLesson } from '../data/lessons'
 import { getLessonProgress } from '../firebase/progress'
 import { isInteractiveStep } from '../logic/stepUtils'
+import { resolveStep } from '../logic/variants'
 import { getGlossaryEntry } from '../data/glossary'
 import { BADGE_META } from '../logic/badgeLogic'
 import Badge from '../components/Badge'
@@ -46,7 +47,10 @@ export default function ReviewPage() {
     return <Navigate to="/hallway" replace />
   }
 
-  const questions = lesson.steps.filter(isInteractiveStep)
+  const runTrack = progress?.variantTrack ?? 0
+  const questions = lesson.steps
+    .filter(isInteractiveStep)
+    .map((s) => resolveStep(s, runTrack))
   const answerFor = (id: string) => progress?.answers?.[id]
   const firstTryCount = questions.filter((s) => {
     const a = answerFor(s.id)

@@ -188,6 +188,56 @@ export async function setLessonBadge(
   )
 }
 
+/** Store the chosen case track for the current run (first play). */
+export async function setVariantTrack(
+  uid: string,
+  lessonId: string,
+  variantTrack: number,
+): Promise<void> {
+  await setDoc(
+    progressRef(uid, lessonId),
+    { variantTrack, updatedAt: serverTimestamp() },
+    { merge: true },
+  )
+}
+
+/**
+ * Start a fresh replay run on an already-completed lesson: clear the previous
+ * run's answers/mistakes so the review reflects only the most recent run, and
+ * record the newly chosen case track. The earned badge is kept.
+ */
+export async function beginReplayRun(
+  uid: string,
+  lessonId: string,
+  variantTrack: number,
+): Promise<void> {
+  const lesson = lessons.find((l) => l.id === lessonId)
+  await updateDoc(progressRef(uid, lessonId), {
+    status: 'in_progress',
+    currentStepId: lesson?.steps[0]?.id ?? '',
+    completedStepIds: [],
+    mistakes: 0,
+    failedRoundTriggered: false,
+    answers: {},
+    variantTrack,
+    updatedAt: serverTimestamp(),
+  })
+}
+
+/** Mark a replay run complete (status + best badge), without touching streak/unlocks. */
+export async function finishReplay(
+  uid: string,
+  lessonId: string,
+  earnedBadge: BadgeType,
+): Promise<void> {
+  await updateDoc(progressRef(uid, lessonId), {
+    status: 'completed',
+    completedAt: serverTimestamp(),
+    earnedBadge,
+    updatedAt: serverTimestamp(),
+  })
+}
+
 // ---------- Badges ----------
 
 export async function awardBadge(uid: string, badge: BadgeRecord): Promise<void> {

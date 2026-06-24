@@ -39,6 +39,43 @@ export interface BaseStep {
   guidedReasoning?: string[]
   /** Optional supporting graphic shown above the interaction. */
   visual?: StepVisual
+  /**
+   * Optional alternate versions of this question. Each run picks one (the base
+   * step is index 0; variants are 1..N) so players get slightly different
+   * questions, and retries re-roll a different version.
+   */
+  variants?: StepVariant[]
+}
+
+/**
+ * A content-only override applied on top of a step for a given run. Only the
+ * fields that differ from the base step need to be provided.
+ */
+export interface StepVariant {
+  prompt?: string
+  feedback?: StepFeedback
+  guidedReasoning?: string[]
+  visual?: StepVisual
+  // choice-style
+  choices?: Choice[]
+  // clue sort
+  categories?: string[]
+  cards?: ClueCard[]
+  // grids
+  rows?: string[]
+  cols?: string[]
+  clues?: string[]
+  showConsequences?: boolean
+  targetRow?: string
+  targetCol?: string
+  // logic switches
+  switches?: SwitchDef[]
+  rule?: SwitchRule
+  expectedSolution?: Record<string, boolean>
+  // ordering
+  items?: OrderingItem[]
+  /** The shape depends on the step type (string, boolean, grid map, etc.). */
+  correctAnswer?: string | string[] | boolean | Record<string, string> | GridSolution
 }
 
 // ---------- Supporting visuals (read-only graphics for context) ----------
@@ -259,6 +296,8 @@ export interface LessonProgress {
   mistakes: number
   failedRoundTriggered: boolean
   answers: Record<string, StepAnswer>
+  /** Which case track (question versions) was chosen for the current/most-recent run. */
+  variantTrack?: number
   startedAt: unknown
   updatedAt: unknown
   completedAt: unknown | null
