@@ -80,7 +80,7 @@ export default function ClueSortView({
       {!locked && unplaced.length > 0 && (
         <div className="cluesort-cards">
           <div className="step-counter" style={{ marginBottom: 4 }}>
-            Drag each clue into a case file:
+            Drag a clue into a case file — or tap a clue, then tap a file:
           </div>
           {unplaced.map((c) => (
             <button
@@ -154,6 +154,8 @@ export default function ClueSortView({
                     e.stopPropagation()
                     removeFromCategory(c.id)
                   }}
+                  aria-label={`${c.text} — tap to remove from ${cat}`}
+                  title="Tap to remove"
                   style={
                     evaluated
                       ? {

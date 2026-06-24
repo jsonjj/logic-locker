@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { getLesson } from '../data/lessons'
 import StepRenderer from '../components/StepRenderer'
 import StepVisual from '../components/StepVisual'
+import InteractionHint from '../components/InteractionHint'
 import { isInteractiveStep } from '../logic/stepUtils'
 import ProgressBar from '../components/ProgressBar'
 import FeedbackPanel from '../components/FeedbackPanel'
@@ -408,6 +409,10 @@ export default function LessonPage() {
                 </div>
               )}
             </div>
+          )}
+
+          {isInteractiveStep(currentStep) && !answered && (
+            <InteractionHint key={currentStep.type} type={currentStep.type} />
           )}
 
           <div className="card">
