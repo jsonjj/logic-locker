@@ -25,15 +25,16 @@ function LockIcon() {
 import { getAvatar } from '../data/avatars'
 import type { LessonProgress } from '../types'
 
-// A solid accent color per room for visual variety (no gradients).
+// A premium gradient per room for visual variety. Each stays dark enough for
+// white banner text to keep strong contrast.
 const ROOM_THEMES = [
-  '#3b5bdb',
-  '#2f9e44',
-  '#7048e8',
-  '#e8590c',
-  '#0c8599',
-  '#c2255c',
-  '#212a45',
+  'linear-gradient(135deg, #4338ca 0%, #6a5cff 100%)',
+  'linear-gradient(135deg, #0b6b3f 0%, #138a52 100%)',
+  'linear-gradient(135deg, #5b21b6 0%, #8b3df0 100%)',
+  'linear-gradient(135deg, #9a3412 0%, #d2540c 100%)',
+  'linear-gradient(135deg, #155e75 0%, #0c8aa6 100%)',
+  'linear-gradient(135deg, #9d174d 0%, #c81e63 100%)',
+  'linear-gradient(135deg, #1e293b 0%, #3b4a63 100%)',
 ]
 
 type StepState = 'completed' | 'current' | 'locked' | 'unlocked'

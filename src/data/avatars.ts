@@ -7,10 +7,10 @@ export interface Avatar {
 
 /** 6 preset avatars (no image uploads allowed in MVP). */
 export const avatars: Avatar[] = [
-  { id: 'inspector', label: 'The Inspector', monogram: 'IN', color: '#2f6df6' },
-  { id: 'sleuth', label: 'The Sleuth', monogram: 'SL', color: '#17b257' },
+  { id: 'inspector', label: 'The Inspector', monogram: 'IN', color: '#6a5cff' },
+  { id: 'sleuth', label: 'The Sleuth', monogram: 'SL', color: '#12a150' },
   { id: 'fox', label: 'The Fox', monogram: 'FX', color: '#e0792b' },
-  { id: 'owl', label: 'The Owl', monogram: 'OW', color: '#8b5cf6' },
+  { id: 'owl', label: 'The Owl', monogram: 'OW', color: '#a855f7' },
   { id: 'analyst', label: 'The Analyst', monogram: 'AN', color: '#0ea5a5' },
   { id: 'shadow', label: 'The Shadow', monogram: 'SH', color: '#475569' },
 ]

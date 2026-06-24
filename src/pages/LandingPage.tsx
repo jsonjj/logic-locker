@@ -34,7 +34,9 @@ export default function LandingPage() {
       <main className="landing-inner">
         <section className="landing-copy">
           <span className="landing-eyebrow">Detective Academy</span>
-          <h1 className="landing-title">Crack the case with logic.</h1>
+          <h1 className="landing-title">
+            Crack the case with <span className="grad">logic</span>.
+          </h1>
           <p className="landing-sub">
             Logic Locker is an interactive academy where you reason your way through
             mysteries. No guessing allowed — only clues, deduction, and proof.

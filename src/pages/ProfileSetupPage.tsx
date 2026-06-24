@@ -45,7 +45,7 @@ export default function ProfileSetupPage() {
 
   return (
     <div className="screen-center">
-      <div className="card" style={{ width: '100%', maxWidth: 460 }}>
+      <div className="card card-elevated" style={{ width: '100%', maxWidth: 460 }}>
         <h2 className="center">Recruit Setup</h2>
         <p className="muted center" style={{ marginTop: 0 }}>
           "Before you touch a single clue, I need a name to yell. — Akash"

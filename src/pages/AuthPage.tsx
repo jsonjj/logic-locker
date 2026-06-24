@@ -42,7 +42,7 @@ export default function AuthPage() {
 
   return (
     <div className="screen-center">
-      <div className="card" style={{ width: '100%', maxWidth: 420 }}>
+      <div className="card card-elevated" style={{ width: '100%', maxWidth: 420 }}>
         <Link
           to="/"
           className="brand"
